@@ -18,6 +18,15 @@ public class Cliente {
     private String cpf;
     private String endereco;
     private String fone;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Cliente(String nome, String dataNasc, String sexo, String cpf, String endereco, String fone) {
         this.nome = nome;
