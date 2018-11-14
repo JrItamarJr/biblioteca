@@ -144,7 +144,7 @@ public class JFLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         
-        if(txtNome.getText().equalsIgnoreCase("adm") ||txtSenha.getText().equals("1234")){
+        if(txtNome.getText().equalsIgnoreCase("adm") ||txtSenha.getText().equals("123")){
             JFPrincipal jfPrincipal = new JFPrincipal();
             jfPrincipal.setVisible(true);
             this.dispose();
