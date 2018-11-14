@@ -167,9 +167,9 @@ public class JFPrincipal extends javax.swing.JFrame {
     private void jMEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEmprestimoActionPerformed
         
         // Abre a janela
-        new JFEmprestimo(this).setVisible(true);
-        
-        this.setEnabled(false);
+        JIEmprestimo jiempre = new JIEmprestimo();
+        jDesktopPane1.add(jiempre);
+        jiempre.setVisible(true);
         
     }//GEN-LAST:event_jMEmprestimoActionPerformed
 

@@ -13,8 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utils.BdCliente;
 import utils.BdMulta;
-import model.Cliente;
-import model.Multa;
+import model.Beam.Cliente;
+import model.Beam.Multa;
 
 
 /**

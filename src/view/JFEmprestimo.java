@@ -21,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
 import utils.BdCliente;
 import utils.BdEmprestimo;
 import utils.BdLivro;
-import model.Cliente;
-import model.Emprestimo;
-import model.Livro;
+import model.Beam.Cliente;
+import model.Beam.Emprestimo;
+import model.Beam.Livro;
 
 
 /**

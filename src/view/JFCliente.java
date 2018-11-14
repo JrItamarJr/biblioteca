@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Cliente;
+import model.Beam.Cliente;
 import utils.BdCliente;
 
 
