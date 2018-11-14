@@ -54,11 +54,11 @@ public class JICliente extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        jT4Cpf = new javax.swing.JTextField();
-        jT5Endereco = new javax.swing.JTextField();
-        jT6Fone = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
+        txtFone = new javax.swing.JTextField();
         txtData = new javax.swing.JFormattedTextField();
         cbSexo = new javax.swing.JComboBox<>();
+        txtCPF = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jBAlterar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
@@ -195,11 +195,9 @@ public class JICliente extends javax.swing.JInternalFrame {
 
         txtNome.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jT4Cpf.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtEndereco.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jT5Endereco.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-
-        jT6Fone.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtFone.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         try {
             txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -208,6 +206,12 @@ public class JICliente extends javax.swing.JInternalFrame {
         }
 
         cbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,12 +236,12 @@ public class JICliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jT4Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jT6Fone, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jT5Endereco))
+                                .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(txtEndereco))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -257,12 +261,12 @@ public class JICliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jT4Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
-                        .addComponent(jT6Fone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jT5Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -362,27 +366,26 @@ public class JICliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        // Ao clicar em pesquisar, é executado o método que efetua a pesquisa, e outro método que exibe a lista da pesquisa
-//        try {
-//            listaContatos();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(rootPane, "Problemas ao listar contatos.");
-//        }
+        try {
+            listaContatos();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Problemas ao listar contatos.");
+        }
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jTablePesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePesquisaMouseClicked
         // Salva a posição da linha selecionada na tabela de pesquisa
-//        int linhaSelecionada = jTablePesquisa.getSelectedRow();
-//
-//        jT1Nome.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 1));
-//        jT2DataAno.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 2));
-//        jT3Sexo.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 3));
-//        jT4Cpf.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 4));
-//        jT5Endereco.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 5));
-//        jT6Fone.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 6));
-//
-//        // Ao selecionar um registro, os campos são ativados possibilitando fazer alterações
-//        habilitaCampos();
+        int linhaSelecionada = jTablePesquisa.getSelectedRow();
+
+        txtNome.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 1));
+        txtData.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 2));
+        cbSexo.setSelectedItem((String) jTablePesquisa.getValueAt(linhaSelecionada, 3));
+        txtCPF.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 4));
+        txtEndereco.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 5));
+        txtFone.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 6));
+
+        // Ao selecionar um registro, os campos são ativados possibilitando fazer alterações
+        habilitaCampos();
     }//GEN-LAST:event_jTablePesquisaMouseClicked
 
     private void jBPesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisar1ActionPerformed
@@ -398,42 +401,40 @@ public class JICliente extends javax.swing.JInternalFrame {
         // Salva a posição da linha selecionada na tabela de pesquisa
         int linhaSelecionada = jTablePesquisa.getSelectedRow();
 
-//        jT0Id.setText(jTablePesquisa.getValueAt(linhaSelecionada, 0).toString());
-//        jT1Nome.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 1));
-//        jT2DataAno.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 2));
-//        jT3Sexo.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 3));
-//        jT4Cpf.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 4));
-//        jT5Endereco.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 5));
-//        jT6Fone.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 6));
-//
-//        // Ao selecionar um registro, os campos são ativados possibilitando fazer alterações
-//        habilitaCampos();
+        txtNome.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 1));
+        txtData.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 2));
+        cbSexo.setSelectedItem((String) jTablePesquisa.getValueAt(linhaSelecionada, 3));
+        txtCPF.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 4));
+        txtEndereco.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 5));
+        txtFone.setText((String) jTablePesquisa.getValueAt(linhaSelecionada, 6));
+
+        // Ao selecionar um registro, os campos são ativados possibilitando fazer alterações
+        habilitaCampos();
     }//GEN-LAST:event_tmCleinteMouseClicked
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-//        try {
-//            excluirRegistro();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(rootPane, "Erro ao excluir registro.");
-//        }
+        try {
+            excluirRegistro();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao excluir registro.");
+        }
     }//GEN-LAST:event_jBExcluirActionPerformed
 
     private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
-//        try {
-//            alteraRegistro();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(rootPane, "Erro ao alterar registro.");
-//        }
+        try {
+            alteraRegistro();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao alterar registro.");
+        }
     }//GEN-LAST:event_jBAlterarActionPerformed
 
     private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
-      //  habilitaCampos();
-        // Limpa os dados dos campos
-       // limpaCampos();
+        habilitaCampos();
+        limpaCampos();
     }//GEN-LAST:event_jBNovoActionPerformed
 
     private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
-        //cadastraRegistro();
+        cadastraRegistro();
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
@@ -455,9 +456,9 @@ public class JICliente extends javax.swing.JInternalFrame {
                     c.setNome(txtNome.getText());
                     c.setDataNasc(txtData.getText());
                     c.setSexo(String.valueOf(cbSexo.getSelectedIndex()));
-                    c.setCpf(jT4Cpf.getText());
-                    c.setEndereco(jT5Endereco.getText());
-                    c.setFone(jT6Fone.getText());
+                    c.setCpf(txtCPF.getText());
+                    c.setEndereco(txtEndereco.getText());
+                    c.setFone(txtFone.getText());
 
                     BdCliente d = new BdCliente();
 
@@ -479,8 +480,8 @@ public class JICliente extends javax.swing.JInternalFrame {
     // Método p/ validação do formulário
     private boolean verificaDados() {
         if ((!txtNome.getText().equals("")) && (!txtData.getText().equals("")) 
-                && (!cbSexo.getSelectedItem().equals("")) && (!jT4Cpf.getText().equals(""))
-                && (!jT5Endereco.getText().equals(""))) {            
+                && (!cbSexo.getSelectedItem().equals("")) && (!txtCPF.getText().equals(""))
+                && (!txtEndereco.getText().equals(""))) {            
             return true;
         }
         JOptionPane.showMessageDialog(rootPane, "Dados imcompletos.");
@@ -600,9 +601,9 @@ public class JICliente extends javax.swing.JInternalFrame {
                 BdCliente d = new BdCliente();
                 
                 c.setNome(txtNome.getText());
-                c.setCpf(jT4Cpf.getText());                
-                c.setEndereco(jT5Endereco.getText());
-                c.setFone(jT6Fone.getText());         
+                c.setCpf(txtCPF.getText());                
+                c.setEndereco(txtEndereco.getText());
+                c.setFone(txtFone.getText());         
 
                 d.altera(c);
                 
@@ -626,26 +627,26 @@ public class JICliente extends javax.swing.JInternalFrame {
     // Limpa os campos do formulário
     private void limpaCampos() {
         txtNome.setText("");
-        jT4Cpf.setText("");
-        jT5Endereco.setText("");
-        jT6Fone.setText(""); 
+        txtCPF.setText("");
+        txtEndereco.setText("");
+        txtFone.setText(""); 
     }
     
     // Desabilita os campos do formulário
     private void desabilitaCampos() {
         txtNome.setEditable(false);
-        jT4Cpf.setEditable(false);
-        jT5Endereco.setEditable(false);
-        jT6Fone.setEditable(false);
+        txtCPF.setEditable(false);
+        txtEndereco.setEditable(false);
+        txtFone.setEditable(false);
     }
     
     // Habilita os campos do formulário
     private void habilitaCampos() {
         
         txtNome.setEditable(true);
-        jT4Cpf.setEditable(true);
-        jT5Endereco.setEditable(true);
-        jT6Fone.setEditable(true);
+        txtCPF.setEditable(true);
+        txtEndereco.setEditable(true);
+        txtFone.setEditable(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -671,14 +672,14 @@ public class JICliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jT4Cpf;
-    private javax.swing.JTextField jT5Endereco;
-    private javax.swing.JTextField jT6Fone;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTextField jTPesquisar1;
     private javax.swing.JTable jTablePesquisa;
     private javax.swing.JTable tmCleinte;
+    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtFone;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
