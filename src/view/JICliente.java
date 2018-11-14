@@ -407,11 +407,11 @@ public class JICliente extends javax.swing.JInternalFrame {
 
     private void jBPesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisar1ActionPerformed
 //        // Ao clicar em pesquisar, é executado o método que efetua a pesquisa, e outro método que exibe a lista da pesquisa
-//        try {
-//            listaContatos();
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(rootPane, "Problemas ao listar contatos.");
-//        }
+        try {
+            listaContatos();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Problemas ao listar contatos.");
+        }
     }//GEN-LAST:event_jBPesquisar1ActionPerformed
 
     private void tmCleinteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tmCleinteMouseClicked
