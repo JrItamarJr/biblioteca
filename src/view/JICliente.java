@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Beam.Cliente;
+import model.DAO.ClienteDAO;
 import utils.BdCliente;
 
 /**
@@ -451,7 +452,16 @@ public class JICliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBNovoActionPerformed
 
     private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
-        cadastraRegistro();
+        Cliente cli = new Cliente();
+        ClienteDAO cliDAO = new ClienteDAO();
+        cli.setNome(txtNome.getText());
+        cli.setCpf(txtCPF.getText());
+        cli.setDataNasc(txtData.getText());
+        cli.setFone(txtFone.getText());
+        cli.setEndereco(txtEndereco.getText());
+        cli.setSexo(cbSexo.getSelectedItem().toString());
+        cliDAO.create(cli);
+        
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
@@ -462,37 +472,7 @@ public class JICliente extends javax.swing.JInternalFrame {
     // MÉTODOS:
     
     // Método p/ cadastrar um registro no banco de dados.
-    private void cadastraRegistro() {
-        // Antes de cadastrar, verifica se o usuário está com algum registro selecionado
-        if (txtNome.isEditable() && txtNome.getText().equals("")) {
-            // Antes de cadastrar, verifica se os campos foram preenchidos
-            if (verificaDados()) {
-                try {
-                    Cliente c = new Cliente();
-                    
-                    c.setNome(txtNome.getText());
-                    c.setDataNasc(txtData.getText());
-                    c.setSexo(String.valueOf(cbSexo.getSelectedIndex()));
-                    c.setCpf(txtCPF.getText());
-                    c.setEndereco(txtEndereco.getText());
-                    c.setFone(txtFone.getText());
-
-                    BdCliente d = new BdCliente();
-
-                    d.adicionaCliente(c);
-
-                    JOptionPane.showMessageDialog(rootPane, "Dados cadastrados com sucesso.");
-                    limpaCampos();
-                    desabilitaCampos();
-
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar cliente.");
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Para cadastrar um novo registro.\nClique em 'Novo'.");
-        }
-    }
+    
     
     // Método p/ validação do formulário
     private boolean verificaDados() {
